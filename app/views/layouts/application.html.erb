@@ -10,6 +10,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="has-fixed-sidenav">
+      <section class="navbar-fixed topnav">
+        <%= render partial: "partials/topnav" %>
+      </section>
+    </header>
+
+    <div class="container main-page">
+      <% if flash[:notice] %>
+  		  <div class="">
+  			  <p class="notice"><%= notice %></p>
+  		  </div>
+  	  <% end %>
+  	  <% if flash[:alert] %>
+  		  <div class="">
+  			  <p class="alert"><%= alert %></p>
+  		  </div>
+  	  <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
