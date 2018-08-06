@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /projects
@@ -15,18 +15,19 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = current_user.projects.build
+    # @teams = Team.where('id = ?', current_user.team_id)
   end
 
   # GET /projects/1/edit
   def edit
+    @teams = current_user.teams
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new project_params
-    @project.user = current_user
+    @project = current_user.projects.build(project_params)
 
     respond_to do |format|
       if @project.save
@@ -65,12 +66,12 @@ class ProjectsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_project
+    def find_project
       @project = Project.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :thumbnail, :location, :deadline, :highlights, :results)
+      params.require(:project).permit(:title, :description, :thumbnail, :location, :deadline, :highlights, :results, :team_id)
     end
 end
