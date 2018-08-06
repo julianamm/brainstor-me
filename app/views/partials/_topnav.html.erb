@@ -1,10 +1,12 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="/projects" class="brand-logo"><img class="materialboxed" src="images/logo-white.png">BRAINSTOR.ME</a>
+        <a href="/projects" class="brand-logo logo-title"><img class="logo" src="/assets/logo-white.png"></a>
+        <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/projects">Home</a></li>
             <% if user_signed_in? %>
                 <li><a class="waves-effect waves-light btn" <%= link_to 'New Project', new_project_path %></a></li>
+                <li><a class="waves-effect waves-light btn" <%= link_to 'New Team', new_team_path %></a></li>
                 <li><a href="#">ShoutOut</a></li>
                 <li><a class="waves-effect waves-light"<%= link_to current_user.name, edit_user_registration_path %></a></li>
                 <li><a class="waves-effect waves-light"<%= link_to "Logout", destroy_user_session_path, method: :delete %></a></li>
@@ -15,3 +17,21 @@
         </ul>
     </div>
 </nav> 
+
+ <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="/assets/cover.jpeg">
+      </div>
+      <a href="#user"><img class="circle" src="/assets/profile.jpg"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+</ul>
+<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        

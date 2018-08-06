@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # GET /projects
-  # GET /projects.json
-  def index
+    # GET /projects.json
+    def index
     @projects = Project.order(created_at: :desc)
   end
 
@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @teams = current_user.teams
+    # @teams = current_user.teams
   end
 
   # POST /projects

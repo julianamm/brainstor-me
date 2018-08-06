@@ -17,3 +17,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+
+$(document).ready(function (){
+    $('.sidenav').sidenav()
+});
