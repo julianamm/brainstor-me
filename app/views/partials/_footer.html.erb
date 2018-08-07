@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+    <div class="fixed-action-btn">
+    <a class="btn-floating btn-large">
+        <i class="large material-icons">add</i>
+    </a>
+    <ul>
+        <li><a href="/projects/new" class="btn-floating purple btn tooltipped" data-position="left" data-tooltip="New Project"><i class="material-icons">description</i></a></li>
+        <li><a href="/teams/new" class="btn-floating yellow darken-1 btn tooltipped" data-position="left" data-tooltip="New Team"><i class="material-icons">group</i></a></li>
+        <li><a href="/shoutouts/new" class="btn-floating green btn tooltipped" data-position="left" data-tooltip="ShoutOut"><i class="material-icons">highlight</i></a></li>
+        <li><a href="/users/edit" class="btn-floating blue btn tooltipped" data-position="left" data-tooltip="Edit Profile"><i class="material-icons">face</i></a></li>
+    </ul>
+    </div>
+<% end %>

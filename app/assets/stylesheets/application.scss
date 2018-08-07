@@ -22,6 +22,8 @@
  @import "https://fonts.googleapis.com/icon?family=Material+Icons";
  @import url('https://fonts.googleapis.com/css?family=Abel|Do+Hyeon|Dosis|Lato|Merriweather+Sans|Poppins|Roboto');
 
+ @import"projects";
+
  html {
   height: 100%;
   box-sizing: border-box;
@@ -36,6 +38,18 @@
  body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  background-color: #e8f5e9;
+ }
+
+ img.avatar {
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+ }
+
+ img.avatar-projects {
+    width: 40px;
+    height: 40px;
  }
 
  img.profile {
@@ -44,10 +58,7 @@
  }
 
  img.logo {
-    width: 60px;
-    height: 60px;
- }
-
- img.project-thumbnail {
-    height: 350px;  
+    width: 55px;
+    height: 55px;
+    margin: 5px;
  }

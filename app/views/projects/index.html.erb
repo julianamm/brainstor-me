@@ -1,55 +1,146 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
+  <!-- Profile Card Section -->
   <div class="col s12 m4 l3">
   <% if user_signed_in? %>
-    <div class="card-panel">
-      <div class="chips">
-        <img class="circle profile" src="/assets/profile.jpeg">
+    <section class="">
+      <div class="card-panel card-profile">
+        <span class="bloc1">
+          <img class="circle profile" src="/assets/profile.jpeg">
+        </span>
+        <span class="bloc2">
+          <p><%#= current_user.name %></p>
+          <p><%#= current_user.email %></p>
+        </span>
+        <div class="bloc1">
+          <p class="bold">Projects</p>
+          <p><%= current_user.projects.count %></p>
+        </div>
+        <div class="bloc2">
+          <p class="bold">ShoutOuts</p>
+          <p><%= 1%></p>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <h6>Tags</h6>
+        </div>
+        
       </div>
-      <div>
-        <p><%= current_user.name %></p>
-        <p><%= current_user.email %></p>
-      </div>
-      <div>
-        <p>Projects</p>
-        <p><%= current_user.projects.count %></p>
-      </div>
-      <div>
-        <p>ShoutOuts</p>
-        <p><%= %></p>
-      </div>
-      
-    </div>
+    </section>
   <% end %>
   </div>
 
-  <div class="col s12 m4 l5">
+  <!-- Projects Card Section -->
+  <div class="col s12 m4 l6">
     <% @projects.each do |project| %> 
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator project-thumbnail" src="/assets/barista-thumb.jpeg">
+      <section class="card-panel">
+        <span>
+          <img class="circle avatar-projects" src="/assets/profile.jpeg">
+        </span>
+        <span class="username">@<%#= current_user.username %></span>
+        <a class="waves-effect waves-light btn right">brainstor.me</a>
+        <div class="card pin">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator project-thumbnail" src="<%= project.thumbnail%>">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4 title"><%= project.title %><i class="material-icons right">more_vert</i></span>
+            <div class="card-action">
+              <% if user_signed_in? && current_user.id == project.user_id%>
+                <%= link_to project, class: "" do %>
+                  <span><i class="material-icons">forward</i></span>
+                <% end %>
+                <%= link_to edit_project_path(project), class: "" do %>
+                  <span><i class="material-icons">edit</i></span>
+                <% end %>
+                <%= link_to project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } do %>
+                  <span><i class="material-icons">delete_sweep</i></span>
+                <% end %>
+              <% else %>
+                <%= link_to project, class: "" do %>
+                  <span><i class="material-icons">reply</i></span>
+                <% end %>
+                <%= link_to project, class: "" do %>
+                  <span><i class="material-icons">thumb_up</i></span>
+                <% end %>
+              <% end %>
+              
+            </div>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
+            <p><%= project.description %></p>
+          </div>
         </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4 title"><%= project.title %><i class="material-icons right">more_vert</i></span>
-        <div class="card-action">
-          <% if user_signed_in? && current_user.id == project.user_id%>
-          <a><%= link_to 'Show', project %></a>
-          <a><%= link_to 'Edit', edit_project_path(project) %></a>
-          <a><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></a>
-          <% end %>
-        </div>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
-          <p><%= project.description %></p>
-        </div>
-      </div>
+      </section>
     <% end %>
   </div>
 
+  <% if user_signed_in? %>
+    <!-- ShoutOut Section -->
+    <div class="col s12 m4 l3">
+      <section class="">
+        <div class="card-panel card-trends">
+          <h6 class="center">360 FeedBack</h6>
+          <div class="divider"></div>
+          <form action="#">
+            <p class="range-field center">
+              <input type="range" id="category1" min="0" max="100" />
+              <span>Category 1</span>
+            </p>
+            <p class="range-field center">
+              <input type="range" id="category2" min="0" max="100" />
+              <span>Category 2</span>
+            </p>
+            <p class="range-field center">
+              <input type="range" id="category3" min="0" max="100" />
+              <span>Category 3</span>
+            </p>
+            <p class="range-field center">
+              <input type="range" id="category4" min="0" max="100" />
+              <span>Category 4</span>
+            </p>
+            <p class="range-field center">
+              <input type="range" id="category5" min="0" max="100" />
+              <span>Category 5</span>
+            </p>
+          </form>
+        </div>
+      </section>
 
-  <div class="col s12 m4 l3">
-    <div class="card-panel">
+      <section class="">
+        <div class="card-panel card-trends">
+          <h6 class="center">ShoutOuts 
+          <i class="waves-effect waves-light material-icons right modal-trigger" href="#modal1">call_made</i></h6>
+          <div class="divider"></div>
+            <span class="bloc1">
+              <img class="circle avatar-projects" src="/assets/profile2.jpeg">
+            </span>
+            <span class="bloc2">
+            <p class="truncate shoutout"> a lot of text text text text</p>
+            </span>
+          <div class="center">
+          <a><i class="material-icons">keyboard_arrow_down</i></a>
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
+
+    <!-- Modal ShoutOut -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+      <h6 class="center">ShoutOuts</h6>
+      <div class="divider"></div>
+        <span class="bloc1">
+          <img class="circle avatar-projects" src="/assets/profile2.jpeg">
+        </span>
+        <span class="bloc2">
+          <p class="shoutout"> a lot of text text text text text here</p>
+        </span>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect btn-flat">close</a>
+      </div>
+    </div>
+  <% end %>
 </div>
+

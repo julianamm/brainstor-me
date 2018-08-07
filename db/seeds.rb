@@ -5,51 +5,52 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-PASSWORD = "123"
 
-User.delete_all
-Project.delete_all
-Team.destroy_all
+# PASSWORD = "123"
 
-super_user = User.create(
-	name: "Juju",
-	username: "juju",
-	email: "juju@gmail.com",
-	password: PASSWORD
-)
+# User.delete_all
+# Project.delete_all
+# Team.destroy_all
 
-10.times do 
-	name = Faker::Name.first_name
-	username = Faker::Dog.name
+# super_user = User.create(
+# 	name: "Juju",
+# 	username: "juju",
+# 	email: "juju@gmail.com",
+# 	password: PASSWORD
+# )
 
-	User.create(
-		name: name, 
-		username: username,
-		email: "#{name.downcase}.@example.com",
-        password: PASSWORD
-	)
-end
+# 10.times do 
+# 	name = Faker::Name.first_name
+# 	username = Faker::Dog.name
 
-users = User.all
-puts "Created #{users.count} users"
+# 	User.create(
+# 		name: name, 
+# 		username: username,
+# 		email: "#{name.downcase}.@example.com",
+#         password: PASSWORD
+# 	)
+# end
 
-20.times do
-    Team.create(
-      name: Faker::Book.genre
-    )
-  end
+# users = User.all
+# puts "Created #{users.count} users"
 
-teams = Team.all
-puts "Created #{teams.count} teams"
+# 20.times do
+#     Team.create(
+#       name: Faker::Book.genre
+#     )
+#   end
 
-20.times do
-    p = Project.create(
-      title: Faker::Hacker.say_something_smart,
-      description: Faker::HarryPotter.quote,
-      user: users.sample
-    )
-end
+# teams = Team.all
+# puts "Created #{teams.count} teams"
 
-projects = Project.all
-puts "Created #{projects.count} projects"
+# 20.times do
+#     p = Project.create(
+#       title: Faker::Hacker.say_something_smart,
+#       description: Faker::HarryPotter.quote,
+#       user: users.sample
+#     )
+# end
+
+# projects = Project.all
+# puts "Created #{projects.count} projects"
 

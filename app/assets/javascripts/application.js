@@ -20,4 +20,10 @@
 
 $(document).ready(function (){
     $('.sidenav').sidenav()
+    $('.fixed-action-btn').floatingActionButton();
+    $('.tooltipped').tooltip();
+    $('.modal').modal();
+    $('.datepicker').datepicker();
 });
+
+
