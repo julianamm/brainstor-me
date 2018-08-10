@@ -2,30 +2,15 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
-  # GET /projects
-    # GET /projects.json
-    def index
-    @projects = Project.order(created_at: :desc)
-  end
-
-  # GET /projects/1
-  # GET /projects/1.json
-  def show
-  end
-
-  # GET /projects/new
+ 
   def new
     @project = current_user.projects.build
-    # @teams = Team.where('id = ?', current_user.team_id)
+    @teams = Team.where('id = ?', current_user.team_ids)
+    # @team = Team.new
+    @team = current_user.teams.build
+    @user = current_user
   end
 
-  # GET /projects/1/edit
-  def edit
-    # @teams = current_user.teams
-  end
-
-  # POST /projects
-  # POST /projects.json
   def create
     @project = current_user.projects.build(project_params)
 
@@ -40,8 +25,18 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /projects/1
-  # PATCH/PUT /projects/1.json
+  def index
+    @projects = Project.order(created_at: :desc)
+  end
+
+
+  def show
+  end
+
+  def edit
+    @teams = current_user.teams
+  end
+
   def update
     respond_to do |format|
       if @project.update(project_params)
@@ -54,8 +49,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1
-  # DELETE /projects/1.json
   def destroy
     @project.destroy
     respond_to do |format|
@@ -65,13 +58,11 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def find_project
-      @project = Project.find(params[:id])
-    end
+  def find_project
+    @project = Project.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:title, :description, :thumbnail, :location, :deadline, :highlights, :results, :team_id)
-    end
+  def project_params
+    params.require(:project).permit(:title, :description, :thumbnail, :team_id)
+  end
 end

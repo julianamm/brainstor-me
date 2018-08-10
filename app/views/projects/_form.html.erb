@@ -33,24 +33,20 @@
         </div>
 
         <div class="input-field col s12">
-          <%= form.label :location, for: "location" %>
-          <%= form.text_field :location, class: "validate", id: "location" %>
+          <select>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">Just me</option>
+            <option value="2">Add more members</option>
+          </select>
+          <label>Team</label>
         </div>
 
         <div class="input-field col s12">
-          <%= form.label :deadline, for: "deadline" %>
-          <%= form.datetime_select :deadline, class: "datepicker", id: "deadline" %>
+          <%= form.label :thumbnail, for: "thumbnail" %>
+          <%= form.text_field :thumbnail, class: "validate", id: "thumbnail" %>
         </div>
 
-        <div class="input-field col s12">
-          <%= form.label :highlights, for: "highlights" %>
-          <%= form.text_area :highlights, class: "validate materialize-textarea", id: "highlights" %>
-        </div>
-
-        <div class="input-field col s12">
-          <%= form.label :results, for: "results" %>
-          <%= form.text_area :results, class: "validate materialize-textarea", id: "results" %>
-        </div>
+  
 
         <div class="actions">
           <a class="waves-effect waves-light btn white-text left"> <%= form.submit%></a>

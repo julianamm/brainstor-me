@@ -24,6 +24,7 @@ $(document).ready(function (){
     $('.tooltipped').tooltip();
     $('.modal').modal();
     $('.datepicker').datepicker();
+    $('select').formSelect();
 });
 
 
