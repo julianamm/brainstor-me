@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :teams, dependent: :nullify
-  has_many :teamed_projects, through: :teams, source: :project
+  has_many :projects, through: :teams, source: :project
 
-  has_many :projects
+  has_many :owned_projects, foreign_key: "user_id", class_name: "Project"
 end

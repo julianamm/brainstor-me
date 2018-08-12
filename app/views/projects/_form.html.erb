@@ -42,12 +42,22 @@
         </div>
 
         <div class="input-field col s12">
-          <%= form.label :thumbnail, for: "thumbnail" %>
-          <%= form.text_field :thumbnail, class: "validate", id: "thumbnail" %>
+          <%= form.label :team_name, for: "team_name" %>
+          <%= form.text_field :team_name, class: "validate", id: "team_name" %>
         </div>
 
+        <div class="input-field col s12">
+          <%= form.label :user_ids, "Users" %>
+          <%= form.collection_select(
+            :user_ids,
+            User.order(name: :asc),
+            :id,
+            :name,
+            {},
+            {multiple: true, class: 'chosen-select'}
+          ) %>
+        </div>
   
-
         <div class="actions">
           <a class="waves-effect waves-light btn white-text left"> <%= form.submit%></a>
         </div>

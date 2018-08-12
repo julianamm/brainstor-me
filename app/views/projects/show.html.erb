@@ -16,8 +16,10 @@
 </p>
 
 <p>
-  <strong>Team:</strong>
-  <%=  %>
+  <strong>Team members:</strong>
+  <% @project.users.each do |member| %>
+    <%=  member.name %>
+  <% end %>
 </p>
 
 
