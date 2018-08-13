@@ -1,0 +1,31 @@
+<h1>Index Create messages</h1>
+<div>
+    <% @create_messages.each do |message| %>
+        <% if message.body %>
+            <% user = User.find(message.user_id) %>
+            <div class="content">
+                <div class="header"><strong><%= user.name %></strong>
+                    <%= message.body %>
+                </div>
+                <small>
+                                <%= link_to("Delete", users_path, class: "", method: :delete) %>
+                            </small>
+                            <small>
+                                <%= link_to("Reply", shoutout_create_messages_path(message.id), class: "") %>
+                            </small>
+            </div>
+        <% end %>
+    <% end %>
+</div>
+
+<div>
+    <%= form_for [@shoutout, @create_message] do |f| %>
+    <div class="field">
+    <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+    <div>
+    <%= f.submit "Send Reply", class: "btn" %>
+    </div>
+    <% end %>
+</div>

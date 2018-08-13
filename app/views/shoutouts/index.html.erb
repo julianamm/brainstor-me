@@ -1,0 +1,25 @@
+<h1>Index ShoutOuts</h1>
+<h2>My shoutouts</h2>
+<div>
+<% @shoutouts.each do |shoutout| %>
+    <% if shoutout.author_id == current_user.id || shoutout.receiver_id == current_user.id %>
+        <% if shoutout.author_id == current_user.id  %>
+            <% receiver = User.find(shoutout.receiver_id)%>
+        <% else %>
+            <% receiver = User.find(shoutout.author_id)%>
+        <% end %>
+        <h3><%= link_to receiver.name, shoutout_create_messages_path(shoutout) %></h3>
+    <% end %>
+<% end %>
+</div>
+
+<div>
+<h2>All users</h2>
+<% @users.each do |user| %>
+    <% if user.id != current_user.id  %>
+    <div>
+        <%= link_to user.name, shoutouts_path(author_id: current_user.id, receiver_id: user.id), method: "post"%>
+    </div>
+    <% end %>
+<% end %>
+</div>

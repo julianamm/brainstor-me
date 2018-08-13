@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.order(created_at: :desc)
+    @shoutouts = Shoutout.all
   end
 
 
@@ -31,6 +32,8 @@ class ProjectsController < ApplicationController
     find_project
     @users = User.all
     @team = Team.where(project_id: :id)
+
+    @create_message = CreateMessage.new
   end
 
   def edit
