@@ -18,9 +18,32 @@
 <p>
   <strong>Team members:</strong>
   <% @project.users.each do |member| %>
-    <%=  member.name %>
+    <% if member.photo.nil? %>
+    <div>
+      <img class="circle avatar-small" src="/assets/default-avatar.png">
+    </div>
+    <p>@<%=  member.username %></p>
+    <% else %>
+    <div>
+      <img class= "circle avatar-small" src="<%= member.photo %>">
+    </div>
+    <p>@<%=  member.username %></p>
+  <% end %>
   <% end %>
 </p>
+
+<div>
+  <strong>Images:</strong>
+  <% if @project.images.attached? %>
+    <%= image_tag @project.images.variant(resize: "500x500") %>
+  <% end %>
+</div>
+
+<%= form_for(@project) do |f| %>
+<%= f.file_field :images %>
+<% end %>
+
+
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
