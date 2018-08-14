@@ -7,10 +7,10 @@
             <section class="">
             <div class="card-panel card-profile">
                 <span class="bloc1">
-                <img class="circle profile" src="/assets/profile.jpeg">
+                <img class="circle profile" src="<%= current_user.photo %>">
                 </span>
                 <span class="bloc2">
-                <p><%= current_user.name %></p>
+                <p>@<%= current_user.username %></p>
                 <p><%= current_user.email %></p>
                 </span>
                 <div class="bloc1">
@@ -49,7 +49,7 @@
                                 <img class="circle avatar-projects" src="/assets/profile2.jpeg">
                             </span>
                             <span class="bloc2">
-                                <p><%= user.name %></p>
+                                <p>@<%= user.username %></p>
                                 <p><%= time_ago_in_words(message.created_at) %> ago</p>
                                 <p class="truncate shoutout"> <%= message.body %></p>
                             </span>

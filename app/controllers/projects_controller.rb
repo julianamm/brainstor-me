@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.order(created_at: :desc)
     @shoutouts = Shoutout.all
+    @users = User.all
   end
 
 

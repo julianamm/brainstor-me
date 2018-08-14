@@ -8,10 +8,10 @@
 
                 <li>
                     <a href="/users/edit" class="waves-effect waves-light">
-                        <img src="/assets/profile.jpeg" class="circle avatar" alt="avatar"> 
+                        <img src="<%= current_user.photo %>" class="circle avatar" alt="avatar"> 
                     </a>
                 </li>
-                <li><a class="waves-effect waves-light"<%= link_to current_user.name, edit_user_registration_path %></a></li>
+                <li><a class="waves-effect waves-light"<%= link_to current_user.username, edit_user_registration_path %></a></li>
                 <li>
                     <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to logout?' } do %>
                         <span class="icon"><i class="material-icons">trending_flat</i></span>
