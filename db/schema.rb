@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_001532) do
+ActiveRecord::Schema.define(version: 2018_08_14_014436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 2018_08_14_001532) do
     t.datetime "updated_at", null: false
     t.index ["shoutout_id"], name: "index_create_messages_on_shoutout_id"
     t.index ["user_id"], name: "index_create_messages_on_user_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.bigint "project_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_notes_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -101,6 +109,7 @@ ActiveRecord::Schema.define(version: 2018_08_14_001532) do
 
   add_foreign_key "create_messages", "shoutouts"
   add_foreign_key "create_messages", "users"
+  add_foreign_key "notes", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "teams", "projects"
   add_foreign_key "teams", "users"

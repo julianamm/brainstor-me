@@ -23,7 +23,7 @@ class CreateMessagesController < ApplicationController
     end
 
     def destroy
-        @create_message = CreateMessage.find(params[:id])
+        @create_message ||= CreateMessage.find params[:id]
         @create_message.destroy
     end
 

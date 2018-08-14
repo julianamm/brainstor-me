@@ -54,7 +54,7 @@
                                 <p class="truncate shoutout"> <%= message.body %></p>
                             </span>
                             <small>
-                                <%= link_to("Delete", users_path, class: "", method: :delete) %>
+                                <%= link_to("Delete", users_path, class: "", method: :delete, data: { id: message.id}) %>
                             </small>
                             <small>
                                 <%= link_to("Reply", shoutout_create_messages_path(message.id), class: "") %>

@@ -35,6 +35,9 @@ class ProjectsController < ApplicationController
     @team = Team.where(project_id: :id)
     
     @create_message = CreateMessage.new
+
+    @note = Note.new
+    @notes = @project.notes.order(created_at: :desc)
   end
 
   def edit

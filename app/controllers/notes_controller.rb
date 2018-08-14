@@ -1,0 +1,29 @@
+class NotesController < ApplicationController
+    before_action :authenticate_user!
+  
+    def create
+        @project = Project.find params[:project_id]
+        @note = Note.new note_params
+        @note.project = @project
+
+        if @note.save
+            if @project.user.present?
+                redirect_to project_path(@project)
+            else
+                @notes = @project.notes.order(created_at: :desc)
+                render "projects/show"
+            end
+        end
+  end
+
+  def destroy
+    @note ||= Note.find params[:id]
+    @note.destroy
+    redirect_to project_path(@note.project)
+  end
+
+  private
+  def note_params
+    params.require(:note).permit(:body)
+  end
+end
