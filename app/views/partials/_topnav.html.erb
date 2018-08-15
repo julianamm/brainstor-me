@@ -3,9 +3,9 @@
         <a href="/projects" class="brand-logo logo-title"><img class="logo" src="/assets/logo-white.png"></a>
         <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+         
             <li><a href="/projects">Home</a></li>
             <% if user_signed_in? %>
-
                 <li>
                     <a href="/users/edit" class="waves-effect waves-light">
                         <img src="<%= current_user.photo %>" class="circle avatar" alt="avatar"> 
@@ -44,3 +44,4 @@
 </ul>
 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         
+

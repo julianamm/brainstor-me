@@ -34,8 +34,8 @@
 
 <div>
   <strong>Images:</strong>
-  <% if @project.image.attached? %>
-  <% @project.image.each do |img| %>
+  <% if @project.images.attached? %>
+  <% @project.images.each do |img| %>
     <%= image_tag img.variant(resize: "500x500") %>
   <% end %>
   <% end %>

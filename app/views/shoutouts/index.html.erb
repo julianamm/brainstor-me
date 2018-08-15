@@ -15,6 +15,12 @@
 
 <div>
 <h2>All users</h2>
+    <form>
+      <%= form_tag projects_path, method: :get do %>
+          <%= text_field_tag :query, params[:query], class: 'form-control', id: "users_search", placeholder: "Search a user" %>
+          <%= submit_tag 'Search', class: "btn" %>
+      <% end %>
+    </form>
 <% @users.each do |user| %>
     <% if user.id != current_user.id  %>
     <div>

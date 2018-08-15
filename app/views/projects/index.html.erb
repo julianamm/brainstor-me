@@ -32,6 +32,12 @@
 
   <!-- Projects Card Section -->
   <div class="col s12 m4 l6">
+    <form>
+      <%= form_tag projects_path, method: :get do %>
+          <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: "projects_search", placeholder: "Search a project" %>
+          <%= submit_tag 'Search', class: "btn" %>
+      <% end %>
+    </form>
     <% @projects.each do |project| %> 
       <section class="card-panel">
         <span>

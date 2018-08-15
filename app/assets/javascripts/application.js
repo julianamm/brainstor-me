@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require chosen-jquery
 //= require materialize
 //= require materialize-sprockets
@@ -56,6 +57,7 @@ $(document).ready(function (){
     $('.datepicker').datepicker();
     $('select').formSelect();
     $('#froala-editor').froalaEditor()
+
 });
 
 

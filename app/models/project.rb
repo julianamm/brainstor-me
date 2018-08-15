@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+    searchkick text_middle: [:title, :description]
+
     has_many :teams, dependent: :destroy
     has_many :users, through: :teams, source: :user
     

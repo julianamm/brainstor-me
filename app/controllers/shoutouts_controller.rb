@@ -4,6 +4,13 @@ class ShoutoutsController < ApplicationController
     def index
         @shoutouts = Shoutout.order(created_at: :desc)
         @users = User.all
+
+        search = params[:query].present? ? params[:query] : nil
+        @users = if search 
+          User.where("name LIKE ? OR username LIKE ?", "%#{search}%", "%#{search}%")
+        else
+          @users = User.order(created_at: :desc)
+        end
     end
 
     def create

@@ -23,7 +23,13 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.order(created_at: :desc)
+    search = params[:query].present? ? params[:query] : nil
+    @projects = if search 
+      Project.where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
+    else
+      @projects = Project.order(created_at: :desc)
+    end
+
     @shoutouts = Shoutout.all
     @users = User.all
   end
@@ -60,6 +66,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
   end
+
 
   private
   def find_project

@@ -25,12 +25,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'font-awesome-sass', '~> 5.0.13'
 gem 'chosen-rails'
 gem 'materialize-sass', '~> 1.0.0.rc2'
 gem 'devise'
 gem 'image_processing'
 gem 'wysiwyg-rails'
+gem 'searchkick'
 
 
 gem 'faker'
