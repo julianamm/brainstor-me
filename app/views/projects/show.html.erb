@@ -32,21 +32,6 @@
   <% end %>
 </p>
 
-<div>
-  <strong>Images:</strong>
-  <% if @project.images.attached? %>
-  <% @project.images.each do |img| %>
-    <%= image_tag img.variant(resize: "500x500") %>
-  <% end %>
-  <% end %>
-</div>
-
-<%= form_for(@project) do |f| %>
-<%= f.file_field :image, multiple: true %><br>
-<%= f.submit "Submit"%>
-<% end %>
-
-
 <h2>Notes</h2>
 
 <%= form_for [@project, @note] do |f| %>

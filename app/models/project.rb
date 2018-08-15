@@ -10,5 +10,4 @@ class Project < ApplicationRecord
     validates(:description, presence: true)
 
     has_many :notes, dependent: :destroy
-    has_many_attached :images
 end

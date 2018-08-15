@@ -74,6 +74,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :description, :thumbnail, { user_ids: [] }, images: [], user_id: current_user.id)
+    params.require(:project).permit(:title, :description, :thumbnail, { user_ids: [] }, user_id: current_user.id)
   end
 end
