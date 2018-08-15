@@ -17,6 +17,7 @@
     <div class="col s12">
         
       <div class="card-panel center">
+      <div class="selector">
         <div class="input-field col s12">
           <%= form.label :title, for:"title" %>
           <%= form.text_field :title, class: "validate", id: "title" %>
@@ -24,7 +25,7 @@
 
         <div class="input-field col s12">
           <%= form.label :description, for: "description" %>
-          <%= form.text_area :description, class: "validate materialize-textarea", id: "description" %>
+          <%= form.text_area :description, id: "froala-editor", class: "validate materialize-textarea" %>
         </div>
 
         <div class="input-field col s12">
@@ -65,6 +66,7 @@
           <%= link_to projects_path, class: "waves-effect waves-light btn" do %>
             <span><i class="material-icons">navigate_before</i></span>
           <% end %>
+        </div>
         </div>
       </div>
     </div>

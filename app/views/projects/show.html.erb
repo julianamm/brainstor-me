@@ -7,7 +7,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @project.description %>
+  <%= @project.description.html_safe %>
 </p>
 
 <p>
@@ -34,26 +34,30 @@
 
 <div>
   <strong>Images:</strong>
-  <% if @project.images.attached? %>
-    <%= image_tag @project.images.variant(resize: "500x500") %>
+  <% if @project.image.attached? %>
+  <% @project.image.each do |img| %>
+    <%= image_tag img.variant(resize: "500x500") %>
+  <% end %>
   <% end %>
 </div>
 
 <%= form_for(@project) do |f| %>
-<%= f.file_field :images %>
+<%= f.file_field :image, multiple: true %><br>
+<%= f.submit "Submit"%>
 <% end %>
+
 
 <h2>Notes</h2>
 
 <%= form_for [@project, @note] do |f| %>
-  <%= f.text_area :body, input_html: { cols: 60, row: 6, placeholder: "What are your thoughts?" } %>
+  <%= f.text_area :body, id: "froala-editor", input_html: { cols: 60, row: 6, placeholder: "What are your thoughts?" } %>
   <%= f.submit "Submit", class: 'btn' %>
 <% end %>
 
 <section class="answer-list">
   <% @notes.each do |note| %>
     <div>
-    <%= note.body %> <br />
+    <%= note.body.html_safe %> <br />
     </div>
  
 

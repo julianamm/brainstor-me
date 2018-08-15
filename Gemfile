@@ -28,8 +28,9 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.0.13'
 gem 'chosen-rails'
 gem 'materialize-sass', '~> 1.0.0.rc2'
-gem  'devise'
+gem 'devise'
 gem 'image_processing'
+gem 'wysiwyg-rails'
 
 
 gem 'faker'
