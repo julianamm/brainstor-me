@@ -69,13 +69,6 @@ class ProjectsController < ApplicationController
     @project.destroy
   end
 
-  def sort 
-    params[:note].each_with_index do |id, index|
-      Note.where(id: id).update_all(position: index + 1)
-    end 
-    head :ok
-  end 
-
   private
   def find_project
     @project = Project.find(params[:id])

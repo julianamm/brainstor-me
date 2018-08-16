@@ -22,6 +22,12 @@ class ShoutoutsController < ApplicationController
         redirect_to shoutout_create_messages_path(@shoutout)
     end
 
+    def destroy
+        @shoutout ||= Shoutout.find params[:id]
+        @shoutout.destroy
+        redirect_to project_path(@note.project)
+    end
+
     private
     def shoutout_params
         params.permit(:author_id, :receiver_id)

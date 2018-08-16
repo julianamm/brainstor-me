@@ -47,7 +47,7 @@
 <div class="section teams">
   <div class="row container center" id="sort-notes" data-url="<%= sort_project_notes_path(@project) %>">
     <% @notes.each do |note| %>
-     <div class="note" data-item-id="<%= note.id %>">
+     <div class="note" data-item-id="<%= note.id %>" id="<%= dom_id(note) %>">
         <div id="col s12 m3 context edit">
           <div class="black card mockup" >
             <div class="control right">
