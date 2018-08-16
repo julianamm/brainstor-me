@@ -22,8 +22,15 @@ class NotesController < ApplicationController
     redirect_to project_path(@note.project)
   end
 
+  def sort 
+    params[:note].each_with_index do |id, index|
+      Note.where(id: id).update_all(position: index + 1)
+    end 
+    head :ok
+  end 
+
   private
   def note_params
-    params.require(:note).permit(:body)
+    params.require(:note).permit(:body, :position)
   end
 end

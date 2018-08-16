@@ -10,12 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require rails-ujs
 //= require jquery
 //= require jquery-ui
+//= require jquery-ui/widget 
+//= require jquery-ui/sortable 
 //= require chosen-jquery
 //= require materialize
 //= require materialize-sprockets
-//= require rails-ujs
 //= require activestorage
 //= require froala_editor.min.js
 //= require plugins/align.min.js
@@ -56,8 +58,20 @@ $(document).ready(function (){
     $('.modal').modal();
     $('.datepicker').datepicker();
     $('select').formSelect();
+    $('.parallax').parallax();
     $('#froala-editor').froalaEditor()
-
+    $("#sort-notes").sortable({
+        update: function(e, ui) {
+          Rails.ajax({
+            url: $(this).data("url"),
+            type: "PATCH",
+            data: $(this).sortable('serialize'),
+          });
+        }
+    });
+    
 });
+
+
 
 

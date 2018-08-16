@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build(
       title: project_params[:title],
       description: project_params[:description],
+      thumbnail: project_params[:thumbnail],
       user_id: current_user.id,
       user_ids: project_params[:user_ids]
     )
@@ -43,7 +44,7 @@ class ProjectsController < ApplicationController
     @create_message = CreateMessage.new
 
     @note = Note.new
-    @notes = @project.notes.order(created_at: :desc)
+    @notes = @project.notes.order(:position)
   end
 
   def edit
@@ -53,6 +54,7 @@ class ProjectsController < ApplicationController
     if @project.update(
       title: project_params[:title],
       description: project_params[:description],
+      thumbnail: project_params[:thumbnail],
       user_id: current_user.id,
       user_ids: project_params[:user_ids]
     )
@@ -67,6 +69,12 @@ class ProjectsController < ApplicationController
     @project.destroy
   end
 
+  def sort 
+    params[:note].each_with_index do |id, index|
+      Note.where(id: id).update_all(position: index + 1)
+    end 
+    head :ok
+  end 
 
   private
   def find_project

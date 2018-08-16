@@ -33,6 +33,7 @@ gem 'devise'
 gem 'image_processing'
 gem 'wysiwyg-rails'
 gem 'searchkick'
+gem 'acts_as_list'
 
 
 gem 'faker'

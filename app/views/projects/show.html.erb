@@ -1,61 +1,90 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description.html_safe %>
-</p>
-
-<p>
-  <strong>Thumbnail:</strong>
-  <%= @project.thumbnail %>
-</p>
-
-<p>
-  <strong>Team members:</strong>
-  <% @project.users.each do |member| %>
-    <% if member.photo.nil? %>
-    <div>
-      <img class="circle avatar-small" src="/assets/default-avatar.png">
+  <div class="parallax-container">
+    <div class="parallax"><img src="<%= @project.thumbnail %>"></div>
+  </div>
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header"><%= @project.title %></h2>
+      <p class="grey-text text-darken-3 lighten-3 description"><%= @project.description.html_safe %></p>
     </div>
-    <p>@<%=  member.username %></p>
-    <% else %>
-    <div>
-      <img class= "circle avatar-small" src="<%= member.photo %>">
+  </div>
+
+<div class="section teams">
+  <div class="row container center">
+    <h3 class"header">Team members</h3>
+    <div class="team-show">
+      <% @project.users.each do |member| %>
+        <% if member.photo.nil? %>
+          <div>
+            <div>
+              <img class="circle avatar-large" src="/assets/default-avatar.png">
+            </div>
+            <p>@<%=  member.username %></p>
+          </div>
+        <% else %>
+          <div>
+            <div>
+              <img class= "circle avatar-large" src="<%= member.photo %>">
+            </div>
+            <p>@<%=  member.username %></p>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <p>@<%=  member.username %></p>
-  <% end %>
-  <% end %>
-</p>
+  </div>
+</div>
 
-<h2>Notes</h2>
 
-<%= form_for [@project, @note] do |f| %>
-  <%= f.text_area :body, id: "froala-editor", input_html: { cols: 60, row: 6, placeholder: "What are your thoughts?" } %>
-  <%= f.submit "Submit", class: 'btn' %>
-<% end %>
+<div class="section">
+  <div class="row container">
+    <%= form_for [@project, @note] do |f| %>
+      <%= f.text_area :body, id: "froala-editor", input_html: { cols: 60, row: 6, placeholder: "What are your thoughts?" } %>
+      <%= f.submit "Submit", class:"btn right"%>
+    <% end %>
+  </div>
+</div>
 
-<section class="answer-list">
-  <% @notes.each do |note| %>
-    <div>
-    <%= note.body.html_safe %> <br />
+<div class="section teams">
+  <div class="row container center" id="sort-notes" data-url="<%= sort_project_notes_path(@project) %>">
+    <% @notes.each do |note| %>
+     <div class="note" data-item-id="<%= note.id %>">
+        <div id="col s12 m3 context edit">
+          <div class="black card mockup" >
+            <div class="control right">
+              <a class="btn-floating waves-effect waves-light "><i class="material-icons">invert_colors</i></a>
+              <a class="btn-floating waves-effect waves-light btn modal-trigger" href="#colorpalette"><i class="material-icons">palette</i></a>
+              <%= link_to project_note_path(@project, note), class: "btn-floating waves-effect waves-light", data: { id: note.id }, method: :delete do %>
+                <span><i class="material-icons">delete_forever</i></span>
+              <% end %>
+            </div>
+            <div class="card-content white-text">
+              <span contenteditable="true"><%= note.body.html_safe %></span> <br />
+            </div>
+            <div class="note-user-avatar">
+              <span class="chip">
+                <img src="<%= current_user.photo %>" alt="Contact Person">@<%= current_user.username %>
+              </span>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div id="colorpalette" class="modal bottom-sheet">
+      <div class="modal-content palette">
+        <div class="color">
+          <div class="title">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+          <div class="sub-color waves-effect waves-light"></div>
+        </div>
+      </div>
     </div>
- 
-
-  <% if user_signed_in? %>
-    <small>
-      <%= link_to("Delete", project_note_path(@project, note), class: "btn", data: { id: note.id }, method: :delete) %>
-    </small>
-    •
-  <% end %>
-    <small>
-      Posted <%= time_ago_in_words(note.created_at) %> ago
-    </small>
- <% end %>
+   
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
