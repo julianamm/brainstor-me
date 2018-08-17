@@ -13,5 +13,7 @@ class User < ApplicationRecord
   has_many :authored_shoutouts, class_name: 'Shoutout', foreign_key: 'author_id'
   has_many :received_shoutouts, class_name: 'Shoutout', foreign_key: 'received_id'
   has_many :create_messages, dependent: :destroy
+
+  has_many :notes, dependent: :destroy
 end
 

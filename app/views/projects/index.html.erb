@@ -44,10 +44,11 @@
           <img class="circle avatar-small" src="/assets/default-avatar.png">
         </span>
        
-        <span class="username">@<%= project.user_id %></span>
+        <span class="username">@<%= project&.user&.username %></span>
  
         <a class="waves-effect waves-light btn right">brainstor.me</a>
         <div class="card pin">
+        
           <div class="card-image waves-effect waves-block waves-light">
             <img class="activator project-thumbnail" src="<%= project.thumbnail%>">
           </div>

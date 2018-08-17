@@ -16,6 +16,7 @@ class CreateMessagesController < ApplicationController
     def create
         @create_message ||= @shoutout.create_messages.build(create_message_params)
         @create_message.shoutout_id = @shoutout.id
+        @create_message.user = current_user
         if @create_message.save!
             flash[:notice] = "Your shoutout was sent!"
             redirect_to shoutout_create_messages_path(@shoutout)
@@ -25,10 +26,11 @@ class CreateMessagesController < ApplicationController
     def destroy
         @create_message ||= CreateMessage.find params[:id]
         @create_message.destroy
+        redirect_to users_path
     end
 
     private
     def create_message_params
-        params.require(:create_message).permit(:body, :user_id)
+        params.require(:create_message).permit(:body, :user_id, :is_public)
     end
 end

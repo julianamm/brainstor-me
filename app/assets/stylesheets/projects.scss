@@ -143,17 +143,17 @@ img.project-thumbnail {
   /* .dragged > .card, .dragged > .card::before{
     transition:5s;
   } */
-  .card {
+  .note {
     transition: transform 0.3s, opacity 0s;
     width: 400px;
     height: auto;
   }
   
-  .context > .card {
+  .context > .note {
     transition:0.3s;
     transform: scale(1.1, 1.1);
   }
-  .card::before{
+  .note::before{
     content:'';
     transform:translate3d(0px,0px,0px);
     transition:0.3s;

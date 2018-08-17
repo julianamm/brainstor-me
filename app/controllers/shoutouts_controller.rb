@@ -25,7 +25,6 @@ class ShoutoutsController < ApplicationController
     def destroy
         @shoutout ||= Shoutout.find params[:id]
         @shoutout.destroy
-        redirect_to project_path(@note.project)
     end
 
     private

@@ -5,6 +5,7 @@ class NotesController < ApplicationController
         @project = Project.find params[:project_id]
         @note = Note.new note_params
         @note.project = @project
+        @note.user = current_user
 
         if @note.save
             if @project.user.present?
@@ -31,6 +32,6 @@ class NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permit(:body, :position)
+    params.require(:note).permit(:body, :position, :user_id)
   end
 end
