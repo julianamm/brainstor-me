@@ -1,0 +1,108 @@
+<div class="row">
+  <!-- Profile Card Section -->
+  <div class="col s12 m4 l3">
+        <% if user_signed_in? %>
+            <section class="card">
+            <div class="card-panel card-profile">
+                <span class="bloc1">
+                    <% if @user.photo.nil? %>    
+                        <img class="circle profile" src="/assets/default-avatar.png">
+                    <% else %>    
+                        <img class="circle profile" src="<%= @user&.photo %>">
+                    <% end %>
+                    <%= link_to edit_user_registration_path(@user), class:"btn-floating halfway-fab waves-effect waves-light" do %>
+                    <i class="material-icons">edit</i>
+                    <% end %>
+                </span>
+                <span class="bloc2">
+                    <p>@<%= @user&.username %></p>
+                    <p><%= @user&.email %></p>
+                </span>
+                <div class="bloc1">
+                    <p class="bold">Projects</p>
+                    <p><%= @user&.projects.count %></p>
+                </div>
+                <div class="bloc2">
+                    <p class="bold">ShoutOuts</p>
+                    <p><%= 1 %></p>
+                </div>
+                <div class="divider"></div>
+                <div>
+                    <h6>Bio</h6>
+                    <div class="divider"></div>
+                    <h6>Tags</h6>
+                </div>
+                
+            </div>
+            </section>
+        <% end %>
+  </div>
+
+
+
+
+    <% if user_signed_in? %>
+        <div class="col s12 m4 l3">
+            <%= render 'shoutouts', users: @users %>
+            <section class="">
+                <div class="card-panel card-trends">
+                    <h6 class="center">ShoutOuts 
+                    <i class="waves-effect waves-light material-icons right modal-trigger" href="#modal1">call_made</i></h6>
+                    <div class="divider"></div>
+                    <% @create_messages.each do |message| %>
+                        <% if message.body %>
+                            <% user = User.find(message.user_id) %>
+                            <div>
+                            
+                            <% if user.photo.nil? %>
+                            <span class="bloc1">
+                                <img class="circle avatar-small" src="/assets/default-avatar.png">
+                            </span>
+                            <% else %>
+                            <span class="bloc1">
+                                <img class="circle avatar-small" src="<%= user.photo %>">
+                            </span>
+                            <% end %>
+                            <span class="bloc2">
+                                <p>@<%= user.username %></p>
+                                <p><%= time_ago_in_words(message.created_at) %> ago</p>
+                                <p class="truncate shoutout"> <%= message.body %></p>
+                            </span>
+                            </div>
+                        <% end %>
+                    <% end %>
+                    
+                    </div>
+                        <div class="center">
+                            <a><i class="material-icons">keyboard_arrow_down</i></a>
+                        </div>
+                    </div>
+            </section>
+        </div>
+        
+        <!-- Modal ShoutOut -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+            <h6 class="center">ShoutOuts</h6>
+            <div class="divider"></div>
+                <% @create_messages.each do |message| %>
+                    <% if message.body %>
+                        <% user = User.find(message.user_id) %>
+                        <div>
+                            <span class="bloc1">
+                                <img class="circle avatar-small" src="/assets/profile2.jpeg">
+                            </span>
+                            <span class="bloc2">
+                                <p><%= user.name %></p>
+                                <p><%= time_ago_in_words(message.created_at) %> ago</p>
+                                <p class="truncate shoutout"> <%= message.body %></p>
+                            </span>
+                        </div>
+                    <% end %>
+                <% end %>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect btn-flat">close</a>
+            </div>
+        </div>
+    <% end %>
+</div>

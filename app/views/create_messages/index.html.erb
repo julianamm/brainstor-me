@@ -1,31 +1,54 @@
-<h1>Index Create messages</h1>
-<div>
+<section class="center chat-box">
+<div class="chat">
     <% @create_messages.each do |message| %>
         <% if message.body %>
             <% user = User.find(message.user_id) %>
-            <div class="content">
-                <div class="header"><strong><%= user.name %></strong>
-                    <%= message.body %>
-                </div>
-                <small>
-                                <%= link_to("Delete", users_path, class: "", method: :delete) %>
-                            </small>
-                            <small>
-                                <%= link_to("Reply", shoutout_create_messages_path(message.id), class: "") %>
-                            </small>
-            </div>
+            <ul >
+                <li class="">
+                    <% if user.photo.nil? %>
+                        <span class="avatar-chat">
+                            <img class="" src="/assets/default-avatar.png">
+                        </span>
+                    <% else %>    
+                        <figure class="bloc1">
+                            <img class="circle avatar-small" src="<%= user&.photo %>">
+                        </figure>
+                    <% end %>    
+                    <span class="shoutouts bloc2">
+                        <span class="shoutout-body">
+                            <%= message.body %>
+                        </span>
+                    </span>
+                    <% if message&.private? %>
+                        <%= link_to shoutout_create_message_path(@shoutout, message, {is_public: true}), method: :patch do %>
+                        <span><i class="material-icons">remove_circle_outline</i></span>
+                        <% end %>
+                    <% else %>
+                        <%= link_to shoutout_create_message_path(@shoutout, message, {is_public: false}), method: :patch do %>
+                        <span><i class="material-icons">remove_circle</i></span>
+                        <% end %>
+                    <% end %>
+                    <%= link_to shoutout_create_message_path(message.shoutout, message), class: "", method: :delete, data: { id: message.id} do %>
+                        <span><i class="material-icons">delete_forever</i></span>
+                    <% end %>
+                    </span>
+                </li>
+            </ul>               
         <% end %>
     <% end %>
-</div>
 
-<div>
-    <%= form_for [@shoutout, @create_message] do |f| %>
-    <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-    </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+
+
     <div>
-    <%= f.submit "Send Reply", class: "btn" %>
+        <%= form_for [@shoutout, @create_message] do |f| %>
+        <div class="field">
+        <%= f.text_area :body, class: "form-control" %>
+        </div>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+        <div>
+        <%= f.submit "Send Reply", class: "btn" %>
+        </div>
+        <% end %>
     </div>
-    <% end %>
-</div>
+
+</section>

@@ -1,104 +1,24 @@
-<h1>Index Users</h1>
-
-<div class="row">
-  <!-- Profile Card Section -->
-  <div class="col s12 m4 l3">
-        <% if user_signed_in? %>
-            <section class="">
-            <div class="card-panel card-profile">
-                <span class="bloc1">
-                <img class="circle profile" src="<%= current_user.photo %>">
-                </span>
-                <span class="bloc2">
-                <p>@<%= current_user.username %></p>
-                <p><%= current_user.email %></p>
-                </span>
-                <div class="bloc1">
-                <p class="bold">Projects</p>
-                <p><%= current_user.projects.count %></p>
-                </div>
-                <div class="bloc2">
-                <p class="bold">ShoutOuts</p>
-                <p><%= 1 %></p>
-                </div>
-                <div class="divider"></div>
-                <div>
-                <h6>Tags</h6>
-                </div>
-                
+<div class="section teams">
+  <div class="row container center">
+    <h3 class"header">All Brainstor.mees</h3>
+    <div class="team-show">
+      <% @users.each do |user| %>
+        <% if user.photo.nil? %>
+          <div>
+            <div>
+              <img class="circle avatar-large" src="/assets/default-avatar.png">
             </div>
-            </section>
+            <p>@<%= link_to user.username, user_path(user.id) %></p>
+          </div>
+        <% else %>
+          <div>
+            <div>
+              <img class= "circle avatar-large" src="<%= user.photo %>">
+            </div>
+            <p>@<%=  user.username %></p>
+          </div>
         <% end %>
-  </div>
-
-
-
-    <% if user_signed_in? %>
-        <div class="col s12 m4 l3">
-            <%= render 'shoutouts', users: @users %>
-            <section class="">
-                <div class="card-panel card-trends">
-                    <h6 class="center">ShoutOuts 
-                    <i class="waves-effect waves-light material-icons right modal-trigger" href="#modal1">call_made</i></h6>
-                    <div class="divider"></div>
-                    <% @create_messages.each do |message| %>
-                        <% if message.body %>
-                            <% user = User.find(message.user_id) %>
-                            <div>
-                            
-                            <% if user.photo.nil? %>
-                            <span class="bloc1">
-                                <img class="circle avatar-small" src="/assets/default-avatar.png">
-                            </span>
-                            <% else %>
-                            <span class="bloc1">
-                                <img class="circle avatar-small" src="<%= user.photo %>">
-                            </span>
-                            <% end %>
-                            <span class="bloc2">
-                                <p>@<%= user.username %></p>
-                                <p><%= time_ago_in_words(message.created_at) %> ago</p>
-                                <p class="truncate shoutout"> <%= message.body %></p>
-                            </span>
-                            <small>
-                                <%= link_to("Delete", shoutout_create_message_path(message.shoutout, message), class: "", method: :delete, data: { id: message.id}) %>
-                            </small>
-                            <small>
-                                <%= link_to("Reply", shoutout_create_messages_path(message.id), class: "") %>
-                            </small>
-                            </div>
-                        <% end %>
-                    <% end %>
-                    <div class="center">
-                        <a><i class="material-icons">keyboard_arrow_down</i></a>
-                    </div>
-                </div>
-            </section>
-        </div>
-        
-        <!-- Modal ShoutOut -->
-        <div id="modal1" class="modal">
-        <div class="modal-content">
-        <h6 class="center">ShoutOuts</h6>
-        <div class="divider"></div>
-        <% @create_messages.each do |message| %>
-            <% if message.body %>
-                <% user = User.find(message.user_id) %>
-                <div>
-                    <span class="bloc1">
-                        <img class="circle avatar-small" src="/assets/profile2.jpeg">
-                    </span>
-                    <span class="bloc2">
-                        <p><%= user.name %></p>
-                        <p><%= time_ago_in_words(message.created_at) %> ago</p>
-                        <p class="truncate shoutout"> <%= message.body %></p>
-                    </span>
-                </div>
-            <% end %>
-        <% end %>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect btn-flat">close</a>
-        </div>
-    <% end %>
+      <% end %>
     </div>
+  </div>
 </div>

@@ -49,6 +49,7 @@
 
  @import"projects";
  @import"shoutouts";
+ @import"notes";
 
  html {
   height: 100%;
@@ -101,4 +102,9 @@
   .message-widget .active {
     color: orange;
   }
+
+  .bloc1, .bloc2 {
+    display:inline-block;
+    margin: 5px;
+ }
   

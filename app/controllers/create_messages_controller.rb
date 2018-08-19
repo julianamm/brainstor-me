@@ -9,10 +9,6 @@ class CreateMessagesController < ApplicationController
         @create_message = @shoutout.create_messages.build
     end
 
-    def new
-        @create_message = @shoutout.create_messages.build
-    end
-
     def create
         @create_message ||= @shoutout.create_messages.build(create_message_params)
         @create_message.shoutout_id = @shoutout.id
@@ -23,10 +19,23 @@ class CreateMessagesController < ApplicationController
         end
     end
 
+    def update
+        @create_message ||= CreateMessage.find params[:id]
+    
+        if @create_message.update(is_public: params[:is_public])
+          flash[:success] = "Vote changed"
+        else
+          flash[:danger] = "Vote could not be changed"
+        end
+    
+        redirect_to shoutout_create_messages_path(@shoutout)
+      end
+    
+
     def destroy
         @create_message ||= CreateMessage.find params[:id]
         @create_message.destroy
-        redirect_to users_path
+        redirect_to shoutout_create_messages_path(@shoutout)
     end
 
     private

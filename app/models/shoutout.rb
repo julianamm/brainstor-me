@@ -4,7 +4,7 @@ class Shoutout < ApplicationRecord
     
     has_many :create_messages, dependent: :destroy
     
-    # validates :author, uniqueness: { scope: :receiver }
+    validates :author, uniqueness: { scope: :receiver }
 
     scope :between, -> (author_id, receiver_id) do
         where("(shoutouts.author_id = ? AND shoutouts.receiver_id = ?)

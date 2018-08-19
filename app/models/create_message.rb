@@ -4,10 +4,11 @@ class CreateMessage < ApplicationRecord
 
   validates :body, presence: true
 
-  def self.public
-    where(is_public: true)
-  end
-   def self.private
-    where(is_public: false)
+  validates :is_public, inclusion: {
+    in: [true, false], message: "must be true or false"
+  }
+  
+  def private?
+    !is_public?
   end
 end
