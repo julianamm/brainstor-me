@@ -10,11 +10,11 @@
                             <img class="" src="/assets/default-avatar.png">
                         </span>
                     <% else %>    
-                        <figure class="bloc1">
+                        <span class="avatar-chat">
                             <img class="circle avatar-small" src="<%= user&.photo %>">
-                        </figure>
+                        </span>
                     <% end %>    
-                    <span class="shoutouts bloc2">
+                    <span class="shoutouts">
                         <span class="shoutout-body">
                             <%= message.body %>
                         </span>
@@ -39,10 +39,10 @@
 
 
 
-    <div>
+    <div class="chat-form">
         <%= form_for [@shoutout, @create_message] do |f| %>
         <div class="field">
-        <%= f.text_area :body, class: "form-control" %>
+        <%= f.text_area :body, class: "form-control form-text" %>
         </div>
         <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
         <div>

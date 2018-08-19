@@ -1,122 +1,61 @@
-<p id="notice"><%= notice %></p>
-<div class="row">
-  <!-- Profile Card Section -->
-  <div class="col s12 m4 l3">
-  <% if user_signed_in? %>
-    <section class="">
-      <div class="card-panel card-profile">
-        <span class="bloc1">
-          <img class="circle profile" src="<%= current_user.photo %>">
-        </span>
-        <span class="bloc2">
-          <p>@<%= current_user.username %></p>
-          <p><%= current_user.email %></p>
-        </span>
-        <div class="bloc1">
-          <p class="bold">Projects</p>
-          <p><%= current_user.projects.count %></p>
-        </div>
-        <div class="bloc2">
-          <p class="bold">ShoutOuts</p>
-          <p><%= 1%></p>
-        </div>
-        <div class="divider"></div>
-        <div>
-          <h6>Tags</h6>
-        </div>
-        
-      </div>
-    </section>
-  <% end %>
-  </div>
-
-  <!-- Projects Card Section -->
-  <div class="col s12 m4 l6">
-    <form>
-      <%= form_tag projects_path, method: :get do %>
-          <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: "projects_search", placeholder: "Search a project" %>
-          <%= submit_tag 'Search', class: "btn" %>
-      <% end %>
-    </form>
-    <% @projects.each do |project| %> 
-      <section class="card-panel">
-        <span>
-          <img class="circle avatar-small" src="/assets/default-avatar.png">
-        </span>
-       
-        <span class="username">@<%= project&.user&.username %></span>
- 
-        <a class="waves-effect waves-light btn right">brainstor.me</a>
-        <div class="card pin">
-        
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator project-thumbnail" src="<%= project.thumbnail%>">
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 title"><%= project.title %><i class="material-icons right">more_vert</i></span>
-            <div class="card-action">
-              <% if user_signed_in? %>
-                <%= link_to project, class: "" do %>
-                  <span><i class="material-icons">forward</i></span>
+<div class="container">
+  <div class="row">
+    <!-- Projects Card Section -->
+    <div class="col s12 l12">
+      <form>
+        <%= form_tag projects_path, method: :get do %>
+            <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: "projects_search", placeholder: "Search a project" %>
+            <%= submit_tag 'Search', class: "btn" %>
+        <% end %>
+      </form>
+      <% @projects.each do |project| %> 
+        <section class="card-panel">
+          <% if project&.user&.photo.nil? %>
+            <span class="bloc1">
+                <img class="circle avatar-small" src="/assets/default-avatar.png">
+            </span>
+          <% else %>
+            <span class="">
+                <img class="circle avatar-small" src="<%= project&.user&.photo %>">
+            </span>
+          <% end %>
+          <span class="username">@<%= project&.user&.username %></span>
+          <div class="card pin">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator project-thumbnail" src="<%= project.thumbnail%>">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4 title"><%= project.title %><i class="material-icons right">more_vert</i></span>
+              <div class="card-action">
+                <% if user_signed_in? %>
+                  <%= link_to project, class: "" do %>
+                    <span><i class="material-icons">forward</i></span>
+                  <% end %>
+                  <%= link_to edit_project_path(project), class: "" do %>
+                    <span><i class="material-icons">edit</i></span>
+                  <% end %>
+                  <%= link_to project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } do %>
+                    <span><i class="material-icons">delete_sweep</i></span>
+                  <% end %>
+                <% else %>
+                  <%= link_to project, class: "" do %>
+                    <span><i class="material-icons">reply</i></span>
+                  <% end %>
+                  <%= link_to project, class: "" do %>
+                    <span><i class="material-icons">thumb_up</i></span>
+                  <% end %>
                 <% end %>
-                <%= link_to edit_project_path(project), class: "" do %>
-                  <span><i class="material-icons">edit</i></span>
-                <% end %>
-                <%= link_to project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } do %>
-                  <span><i class="material-icons">delete_sweep</i></span>
-                <% end %>
-              <% else %>
-                <%= link_to project, class: "" do %>
-                  <span><i class="material-icons">reply</i></span>
-                <% end %>
-                <%= link_to project, class: "" do %>
-                  <span><i class="material-icons">thumb_up</i></span>
-                <% end %>
-              <% end %>
-              
+                
+              </div>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
+              <p><%= project.description %></p>
             </div>
           </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
-            <p><%= project.description %></p>
-          </div>
-        </div>
-      </section>
-    <% end %>
+        </section>
+      <% end %>
+    </div>
   </div>
-
-  <% if user_signed_in? %>
-    <!-- Feedback Section -->
-    <div class="col s12 m4 l3">
-      <section class="">
-        <div class="card-panel card-trends">
-          <h6 class="center">360 FeedBack</h6>
-          <div class="divider"></div>
-          <form action="#">
-            <p class="range-field center">
-              <input type="range" id="category1" min="0" max="100" />
-              <span>Category 1</span>
-            </p>
-            <p class="range-field center">
-              <input type="range" id="category2" min="0" max="100" />
-              <span>Category 2</span>
-            </p>
-            <p class="range-field center">
-              <input type="range" id="category3" min="0" max="100" />
-              <span>Category 3</span>
-            </p>
-            <p class="range-field center">
-              <input type="range" id="category4" min="0" max="100" />
-              <span>Category 4</span>
-            </p>
-            <p class="range-field center">
-              <input type="range" id="category5" min="0" max="100" />
-              <span>Category 5</span>
-            </p>
-          </form>
-        </div>
-      </section>
-    </div> 
-  <% end %>
 </div>
 
