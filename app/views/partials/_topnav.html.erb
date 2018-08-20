@@ -1,20 +1,20 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="/projects" class="brand-logo logo-title"><img class="logo" src="/assets/logo-white.png"></a>
+        <a href="/projects" class="brand-logo logo-title"><img class="logo animated swing" src="/assets/logo-white.png"></a>
         <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
          
             <li><a href="/projects">Home</a></li>
             <% if user_signed_in? %>
                 <li>
-                    <a href="/users/edit" class="waves-effect waves-light">
+                    <%= link_to user_path(current_user.id), class:"waves-effect waves-light" do %>
                         <img src="<%= current_user.photo %>" class="circle avatar" alt="avatar"> 
-                    </a>
+                    <% end %>
                 </li>
                 <li><a class="waves-effect waves-light"<%= link_to current_user.username, edit_user_registration_path %></a></li>
                 <li>
                     <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to logout?' } do %>
-                        <span class="icon"><i class="material-icons">trending_flat</i></span>
+                        <span class="icon"><i class="material-icons">settings_power</i></span>
                     <% end %>
                 </li>
             <% else %>

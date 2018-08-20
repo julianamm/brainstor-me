@@ -24,19 +24,24 @@
         <% else %>
           <div>
             <div>
-              <img class= "circle avatar-large" src="<%= member.photo %>">
+              <%= link_to user_path(member.id) do %>
+                <img class= "circle avatar-large materialboxed" src="<%= member.photo %>">                
+              <% end %>
             </div>
-            <p>@<%=  member.username %></p>
+              <p>@<%=  member.username %></p>
           </div>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
-
+<div class="parallax-container">
+  <div class="parallax"><img src="<%= @project.thumbnail %>"></div>
+</div>
 
 <div class="section">
   <div class="row container">
+    <h2 class="title center">Notes</h2>
     <%= form_for [@project, @note] do |f| %>
       <%= f.text_area :body, id: "froala-editor", input_html: { cols: 60, row: 6, placeholder: "What are your thoughts?" } %>
       <%= f.submit "Submit", class:"btn right"%>
@@ -44,12 +49,12 @@
   </div>
 </div>
 
-<div class="section teams">
-  <div class="row container center" id="sort-notes" data-url="<%= sort_project_notes_path(@project) %>">
+<div id="droppable-box" class="section notes container">
+  <div class="row container" id="sort-notes" data-url="<%= sort_project_notes_path(@project) %>">
     <% @notes.each do |note| %>
      <div class="note" data-item-id="<%= note.id %>" id="<%= dom_id(note) %>">
         <div id="col s12 m3 context edit">
-          <div class="black card note mockup" >
+          <div id="draggable-note" class="black card note mockup" data-url="<%= sort_project_notes_path(@project) %>">
             <div class="control right">
               <a class="btn-floating waves-effect waves-light "><i class="material-icons">invert_colors</i></a>
               <a class="btn-floating waves-effect waves-light btn modal-trigger" href="#colorpalette"><i class="material-icons">palette</i></a>
@@ -66,7 +71,6 @@
                   <img src="<%= current_user.photo %>" alt="Contact Person">@<%= note.user.name %>
                 </span>
               <% end %>
-    
             </div>
           </div>
         </div>
@@ -87,6 +91,3 @@
    
   </div>
 </div>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>

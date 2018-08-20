@@ -1,32 +1,39 @@
-<h1>Index ShoutOuts</h1>
-<h2>My shoutouts</h2>
-<div>
-<% @shoutouts.each do |shoutout| %>
-    <% if shoutout.author_id == current_user.id || shoutout.receiver_id == current_user.id %>
-        <% if shoutout.author_id == current_user.id  %>
-            <% receiver = User.find(shoutout.receiver_id)%>
-        <% else %>
-            <% receiver = User.find(shoutout.author_id)%>
+<div class="section teams">
+    <div class="row container center">
+        <h3 class"header">ShoutOuts</h3>
+        <form>
+            <%= form_tag projects_path, method: :get do %>
+                <%= text_field_tag :query, params[:query], class: 'form-control', id: "users_search", placeholder: "Search a user to ShoutOut" %>
+                <%= submit_tag 'Search', class: "btn submit" %>
+            <% end %>
+        </form>
+        <div class="team-show">
+
+        <% @users.each do |user| %>
+            <% if user.id != current_user.id  %>
+                <div>
+                    <div>
+                        <%= link_to shoutouts_path(author_id: current_user.id, receiver_id: user.id), method: "post" do %>
+                            <img class= "circle avatar-shoutouts materialboxed animated tada" src="<%= user.photo %>">
+                        <% end %>
+                    </div>
+                    <p>@<%= user.username %></p>
+                </div>
+            <% end %>
         <% end %>
-        <h3><%= link_to receiver.name, shoutout_create_messages_path(shoutout) %></h3>
-    <% end %>
-<% end %>
-</div>
-
+        
+        <%# @shoutouts.each do |shoutout| %>
+            <%# if shoutout.author_id == current_user.id || shoutout.receiver_id == current_user.id %>
+                <%# if shoutout.author_id == current_user.id  %>
+                    <%# receiver = User.find(shoutout.receiver_id)%>
+                <%# else %>
+                    <%# receiver = User.find(shoutout.author_id)%>
+                <%# end %>
+                <%#= link_to shoutout_create_messages_path(shoutout) do %>
+                    <%#= receiver.photo %>
+                <%# end %>
+            <%# end %>
+        <%# end %>
+    </div>  
 <div>
-<h2>All users</h2>
-    <form>
-      <%= form_tag projects_path, method: :get do %>
-          <%= text_field_tag :query, params[:query], class: 'form-control', id: "users_search", placeholder: "Search a user" %>
-          <%= submit_tag 'Search', class: "btn" %>
-      <% end %>
-    </form>
-<% @users.each do |user| %>
-    <% if user.id != current_user.id  %>
-    <div>
-        <%= link_to user.name, shoutouts_path(author_id: current_user.id, receiver_id: user.id), method: "post"%>
-    </div>
-    <% end %>
-    <% end %>
 
-</div>

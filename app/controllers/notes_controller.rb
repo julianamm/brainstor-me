@@ -1,20 +1,20 @@
 class NotesController < ApplicationController
-    before_action :authenticate_user!
-  
-    def create
-        @project = Project.find params[:project_id]
-        @note = Note.new note_params
-        @note.project = @project
-        @note.user = current_user
+  before_action :authenticate_user!
 
-        if @note.save
-            if @project.user.present?
-                redirect_to project_path(@project)
-            else
-                @notes = @project.notes.order(created_at: :desc)
-                render "projects/show"
-            end
-        end
+  def create
+    @project = Project.find params[:project_id]
+    @note = Note.new note_params
+    @note.project = @project
+    @note.user = current_user
+
+    if @note.save
+      if @project.user.present?
+          redirect_to project_path(@project)
+      else
+          @notes = @project.notes.order(created_at: :desc)
+          render "projects/show"
+      end
+    end
   end
 
   def destroy

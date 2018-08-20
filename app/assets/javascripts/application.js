@@ -48,28 +48,30 @@
 //= require plugins/draggable.min.js
 //= require third_party/embedly.min.js
 //= require third_party/image_aviary.min.js
+//= require interact
 //= require_tree .
 
 
 $(document).ready(function (){
-    $('.sidenav').sidenav()
-    $('.fixed-action-btn').floatingActionButton();
-    $('.tooltipped').tooltip();
-    $('.modal').modal();
-    $('.datepicker').datepicker();
-    $('select').formSelect();
-    $('.parallax').parallax();
-    $('#froala-editor').froalaEditor()
-    $("#sort-notes").sortable({
-        update: function(e, ui) {
-          Rails.ajax({
-            url: $(this).data("url"),
-            type: "PATCH",
-            data: $(this).sortable('serialize'),
-          });
-        }
-    });
-    
+  $('.sidenav').sidenav()
+  $('.fixed-action-btn').floatingActionButton();
+  $('.tooltipped').tooltip();
+  $('.modal').modal();
+  $('.datepicker').datepicker();
+  $('select').formSelect();
+  $('.parallax').parallax();
+  $('#froala-editor').froalaEditor()
+  $("#sort-notes").sortable({
+    update: function(e, ui) {
+      Rails.ajax({
+        url: $(this).data("url"),
+        type: "PATCH",
+        data: $(this).sortable('serialize'),
+      });
+    }
+  });
+  // $("#droppable-box").droppable()
+
 });
 
 

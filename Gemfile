@@ -29,11 +29,14 @@ gem 'jquery-ui-rails'
 gem 'font-awesome-sass', '~> 5.0.13'
 gem 'chosen-rails'
 gem 'materialize-sass', '~> 1.0.0.rc2'
+gem 'animate-rails'
 gem 'devise'
 gem 'image_processing'
 gem 'wysiwyg-rails'
 gem 'searchkick'
 gem 'acts_as_list'
+gem 'interact-rails'
+
 
 
 gem 'faker'

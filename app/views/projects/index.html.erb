@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
+  <div class="row container center">
     <!-- Projects Card Section -->
     <div class="col s12 l12">
       <form>
         <%= form_tag projects_path, method: :get do %>
             <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: "projects_search", placeholder: "Search a project" %>
-            <%= submit_tag 'Search', class: "btn" %>
+            <%= submit_tag 'Search', class: "btn submit" %>
         <% end %>
       </form>
       <% @projects.each do |project| %> 

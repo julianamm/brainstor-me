@@ -15,7 +15,7 @@
   <div class="form">
   <div class="row">
     <div class="col s12">
-        
+      
       <div class="card-panel center">
       <div class="selector">
         <div class="input-field col s12">
@@ -34,21 +34,12 @@
         </div>
 
         <div class="input-field col s12">
-          <select>
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">Just me</option>
-            <option value="2">Add more members</option>
-          </select>
-          <label>Team</label>
-        </div>
-
-        <div class="input-field col s12">
-          <%= form.label :team_name, for: "team_name" %>
+          <%= form.label :team_name_optional, for: "team_name" %>
           <%= form.text_field :team_name, class: "validate", id: "team_name" %>
         </div>
 
         <div class="input-field col s12">
-          <%= form.label :user_ids, "Users" %>
+          <%= form.label :user_ids, "Team members" %>
           <%= form.collection_select(
             :user_ids,
             User.order(name: :asc),
@@ -60,10 +51,10 @@
         </div>
   
         <div class="actions">
-          <a class="waves-effect waves-light btn white-text left"> <%= form.submit%></a>
+          <a class="waves-effect waves-light btn left submit"> <%= form.submit%></a>
         </div>
         <div>
-          <%= link_to projects_path, class: "waves-effect waves-light btn" do %>
+          <%= link_to projects_path, class: "waves-effect waves-light btn submit" do %>
             <span><i class="material-icons">navigate_before</i></span>
           <% end %>
         </div>
