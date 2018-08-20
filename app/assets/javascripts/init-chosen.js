@@ -1,3 +1,3 @@
-// $(() => {
-//     $(".chosen-select").chosen({ width: "300px" });
-// });
+$(() => {
+    $(".chosen-select").chosen({ width: "300px" });
+});

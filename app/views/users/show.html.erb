@@ -31,6 +31,11 @@
                     <h6>Bio</h6>
                     <div class="divider"></div>
                     <h6>Tags</h6>
+                    <% @user.tags.each do |tag| %>
+                        <div class="chip tags">
+                            <p><%=tag.name%></p>
+                        </div>
+                    <% end %>
                 </div>
                 
             </div>
@@ -67,29 +72,29 @@
                 <div class="card-action">
                 <% if user_signed_in? %>
                     <%= link_to project, class: "" do %>
-                    <span><i class="material-icons">forward</i></span>
+                        <span><i class="material-icons">forward</i></span>
                     <% end %>
                     <%= link_to edit_project_path(project), class: "" do %>
-                    <span><i class="material-icons">edit</i></span>
+                        <span><i class="material-icons">edit</i></span>
                     <% end %>
                     <%= link_to project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } do %>
-                    <span><i class="material-icons">delete_sweep</i></span>
+                        <span><i class="material-icons">delete_sweep</i></span>
                     <% end %>
                 <% else %>
                     <%= link_to project, class: "" do %>
-                    <span><i class="material-icons">reply</i></span>
+                        <span><i class="material-icons">reply</i></span>
                     <% end %>
                     <%= link_to project, class: "" do %>
-                    <span><i class="material-icons">thumb_up</i></span>
+                        <span><i class="material-icons">thumb_up</i></span>
                     <% end %>
                 <% end %>
                 
                 </div>
             </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
-                <p><%= project.description %></p>
-            </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
+                    <p><%= project.description %></p>
+                </div>
             </div>
         </section>
         <% end %>
@@ -108,30 +113,28 @@
                         <% if message.body %>
                             <% user = User.find(message.user_id) %>
                             <div>
-                            
-                            <% if user.photo.nil? %>
-                            <span class="bloc1">
-                                <img class="circle avatar-small" src="/assets/default-avatar.png">
-                            </span>
-                            <% else %>
-                            <span class="bloc1">
-                                <img class="circle avatar-small" src="<%= user.photo %>">
-                            </span>
-                            <% end %>
-                            <span class="bloc2">
-                                <p>@<%= user.username %></p>
-                                <p><%= time_ago_in_words(message.created_at) %> ago</p>
-                                <p class="truncate shoutout"> <%= message.body %></p>
-                            </span>
+                                <% if user.photo.nil? %>
+                                    <span class="bloc1">
+                                        <img class="circle avatar-small" src="/assets/default-avatar.png">
+                                    </span>
+                                <% else %>
+                                    <span class="bloc1">
+                                        <img class="circle avatar-small" src="<%= user.photo %>">
+                                    </span>
+                                <% end %>
+                                <span class="bloc2">
+                                    <p>@<%= user.username %></p>
+                                    <p><%= time_ago_in_words(message.created_at) %> ago</p>
+                                    <p class="truncate shoutout"> <%= message.body %></p>
+                                </span>
                             </div>
                         <% end %>
                     <% end %>
-                    
                     </div>
-                        <div class="center">
-                            <a><i class="material-icons">keyboard_arrow_down</i></a>
-                        </div>
+                    <div class="center">
+                        <a><i class="material-icons">keyboard_arrow_down</i></a>
                     </div>
+                </div>
             </section>
         </div>
         

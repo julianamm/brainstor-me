@@ -28,6 +28,18 @@
             <%= f.text_field :bio, autocomplete: "bio" %>
           </div>
 
+          <div class="input-field col s12">>
+            <%= f.label(:tags) %>
+            <%= f.collection_select(
+              :tag_ids,
+              Tag.order(name: :asc),
+              :id, 
+              :humanized_name,
+              {},
+              {multiple: :true, class: 'chosen-select'}
+            ) %>
+          </div>
+
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>

@@ -61,6 +61,7 @@ $(document).ready(function (){
   $('select').formSelect();
   $('.parallax').parallax();
   $('#froala-editor').froalaEditor()
+  $('.chips').chips();
   $("#sort-notes").sortable({
     update: function(e, ui) {
       Rails.ajax({

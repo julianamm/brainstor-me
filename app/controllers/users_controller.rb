@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     private
     def user_params 
-		params.require(:user).permit(:name, :username, :email, :photo, :bio, :location)
+		params.require(:user).permit(:name, :username, :email, :photo, :bio, :location, { tag_ids: [] })
     end
     def find_user
         @user = User.find(params[:id])

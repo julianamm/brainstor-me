@@ -15,5 +15,8 @@ class User < ApplicationRecord
   has_many :create_messages, dependent: :destroy
 
   has_many :notes, dependent: :destroy
+
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 end
 
