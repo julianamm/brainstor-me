@@ -36,6 +36,7 @@ gem 'wysiwyg-rails'
 gem 'searchkick'
 gem 'acts_as_list'
 gem 'interact-rails'
+gem 'figaro'
 
 
 

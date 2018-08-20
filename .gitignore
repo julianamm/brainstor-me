@@ -24,3 +24,13 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore application configuration
+/config/application.yml
+
+/config/credentials.yml.enc.29900
+/config/credentials.yml.enc.29600
+/config/credentials.yml.enc
+
+/config/initializers/AWS_CONFIG.rb
+

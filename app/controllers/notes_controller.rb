@@ -1,11 +1,14 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
+  include AmazonSignature
 
   def create
     @project = Project.find params[:project_id]
     @note = Note.new note_params
     @note.project = @project
     @note.user = current_user
+
+    @hash = AmazonSignature::data_hash
 
     if @note.save
       if @project.user.present?
