@@ -13,6 +13,13 @@ class UsersController < ApplicationController
         @team = Team.where(project_id: :id)
         
         @create_messages = CreateMessage.where(is_public: true)
+
+        search = params[:query].present? ? params[:query] : nil
+        @projects = if search 
+          Project.where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
+        else
+          @projects = Project.order(created_at: :desc)
+        end
     end
 
     private

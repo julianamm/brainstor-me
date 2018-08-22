@@ -3,17 +3,20 @@
   <div class="col s12 m4 l3">
         <% if user_signed_in? %>
             <section class="card">
-            <div class="card-panel card-profile">
-                <span class="bloc1">
+            <div class="card-panel ">
+                <span class="bloc1 user-img-profile">
                     <% if @user.photo.nil? %>    
                         <img class="circle profile" src="/assets/default-avatar.png">
                     <% else %>    
-                        <img class="circle profile" src="<%= @user&.photo %>">
+                        <img class="circle profile user-img-profile" src="<%= @user&.photo %>">
                     <% end %>
+                </span>
+                <span>
                     <%= link_to edit_user_registration_path(@user), class:"btn-floating halfway-fab waves-effect waves-light" do %>
                     <i class="material-icons">edit</i>
                     <% end %>
                 </span>
+                
                 <span class="bloc2">
                     <p>@<%= @user&.username %></p>
                     <p><%= @user&.email %></p>
@@ -24,17 +27,21 @@
                 </div>
                 <div class="bloc2">
                     <p class="bold">ShoutOuts</p>
-                    <p><%= 1 %></p>
+                    <p><%= 3 %></p>
                 </div>
                 <div class="divider"></div>
                 <div>
-                    <h6>Bio</h6>
+                    <h6 class="title-user-prof">Bio</h6>
+                    <div class="bio">
+                            <p><%=@user.bio%></p>
+                        </div>
+
                     <div class="divider"></div>
                     <h6>Tags</h6>
                     <% @user.tags.each do |tag| %>
-                        <div class="chip tags">
+                        <span class="tags">
                             <p><%=tag.name%></p>
-                        </div>
+                        </span>
                     <% end %>
                 </div>
                 
@@ -44,7 +51,7 @@
   </div>
 
 <!-- Project Card Section -->
-    <div class="col s12 l6">
+    <div class="col s12 l6 user-projects">
         <form>
         <%= form_tag projects_path, method: :get do %>
             <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: "projects_search", placeholder: "Search a project" %>
@@ -114,53 +121,61 @@
                             <% user = User.find(message.user_id) %>
                             <div>
                                 <% if user.photo.nil? %>
-                                    <span class="bloc1">
+                                    <span class="bloc1 user-shoutout">
                                         <img class="circle avatar-small" src="/assets/default-avatar.png">
                                     </span>
                                 <% else %>
-                                    <span class="bloc1">
+                                    <span class="bloc1 user-shoutout">
                                         <img class="circle avatar-small" src="<%= user.photo %>">
                                     </span>
                                 <% end %>
-                                <span class="bloc2">
+                                <span class="bloc2 user-shoutout">
                                     <p>@<%= user.username %></p>
-                                    <p><%= time_ago_in_words(message.created_at) %> ago</p>
-                                    <p class="truncate shoutout"> <%= message.body %></p>
+                                </span>
+                                <span class="bloc2 user-shoutout">
+                                    <p class="truncate(5) user-shoutout-body"> <%= message.body %></p>
+                                    <p class="right"><small><%= time_ago_in_words(message.created_at) %> ago</small></p>
                                 </span>
                             </div>
                         <% end %>
                     <% end %>
                     </div>
-                    <div class="center">
-                        <a><i class="material-icons">keyboard_arrow_down</i></a>
-                    </div>
                 </div>
             </section>
-        </div>
-        
+        </div>   
+
         <!-- Modal ShoutOut -->
         <div id="modal1" class="modal">
             <div class="modal-content">
             <h6 class="center">ShoutOuts</h6>
             <div class="divider"></div>
                 <% @create_messages.each do |message| %>
-                    <% if message.body %>
-                        <% user = User.find(message.user_id) %>
-                        <div>
-                            <span class="bloc1">
-                                <img class="circle avatar-small" src="/assets/profile2.jpeg">
-                            </span>
-                            <span class="bloc2">
-                                <p><%= user.name %></p>
-                                <p><%= time_ago_in_words(message.created_at) %> ago</p>
-                                <p class="truncate shoutout"> <%= message.body %></p>
-                            </span>
-                        </div>
+                        <% if message.body %>
+                            <% user = User.find(message.user_id) %>
+                            <div>
+                                <% if user.photo.nil? %>
+                                    <span class="bloc1 user-shoutout">
+                                        <img class="circle avatar-small" src="/assets/default-avatar.png">
+                                    </span>
+                                <% else %>
+                                    <span class="bloc1 user-shoutout">
+                                        <img class="circle avatar-small" src="<%= user.photo %>">
+                                    </span>
+                                <% end %>
+                                <span class="bloc2 user-shoutout">
+                                    <p>@<%= user.username %></p>
+                                </span>
+                                <span class="bloc2 user-shoutout">
+                                    <p class="truncate(5) user-shoutout-body"> <%= message.body %></p>
+                                    <p class="right"><small><%= time_ago_in_words(message.created_at) %> ago</small></p>
+                                </span>
+                            </div>
+                        <% end %>
                     <% end %>
-                <% end %>
             <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect btn-flat">close</a>
             </div>
         </div>
     <% end %>
 </div>
+

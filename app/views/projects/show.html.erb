@@ -1,13 +1,13 @@
-<p id="notice"><%= notice %></p>
-  <div class="parallax-container">
-    <div class="parallax"><img src="<%= @project.thumbnail %>"></div>
+
+<div class="parallax-container">
+  <div class="parallax"><img src="<%= @project.thumbnail %>"></div>
+</div>
+<div class="section white">
+  <div class="row container">
+    <h2 class="header"><%= @project.title %></h2>
+    <p class="grey-text text-darken-3 lighten-3 description"><%= @project.description.html_safe %></p>
   </div>
-  <div class="section white">
-    <div class="row container">
-      <h2 class="header"><%= @project.title %></h2>
-      <p class="grey-text text-darken-3 lighten-3 description"><%= @project.description.html_safe %></p>
-    </div>
-  </div>
+</div>
 
 <div class="section teams">
   <div class="row container center">
@@ -56,7 +56,7 @@
         <div id="col s12 m3 context edit">
           <div id="draggable-note" class="black card note mockup" data-url="<%= sort_project_notes_path(@project) %>">
             <div class="control right">
-              <a class="btn-floating waves-effect waves-light "><i class="material-icons">invert_colors</i></a>
+              <a id="text-toggle" class="btn-floating waves-effect waves-light"><i class="material-icons">invert_colors</i></a>
               <a class="btn-floating waves-effect waves-light btn modal-trigger" href="#colorpalette"><i class="material-icons">palette</i></a>
               <%= link_to project_note_path(@project, note), class: "btn-floating waves-effect waves-light", data: { id: note.id }, method: :delete do %>
                 <span><i class="material-icons">delete_forever</i></span>
@@ -64,12 +64,12 @@
             </div>
             <div class="card-content white-text froala-view">
               
-              <span contenteditable="true"><%= note.body.html_safe %></span> <br />
+              <span contenteditable="true" class="text-color"><%= note.body.html_safe %></span> <br />
             </div>
             <div class="note-user-avatar">
               <% if note.user %>
                 <span class="chip">
-                  <img src="<%= current_user.photo %>" alt="Contact Person">@<%= note.user.name %>
+                  <img src="<%= note.user.photo %>" alt="Contact Person">@<%= note.user.name %>
                 </span>
               <% end %>
             </div>

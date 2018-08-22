@@ -18,15 +18,15 @@
                         <span class="shoutout-body">
                             <%= message.body %>
                             <% if message&.private? %>
-                                <%= link_to shoutout_create_message_path(@shoutout, message, {is_public: true}), class: "btn-floating btn-small green accent-2 btn-floating waves-effect waves-light", method: :patch do %>
+                                <%= link_to shoutout_create_message_path(@shoutout, message, {is_public: true}), class: "waves-effect waves-light", method: :patch do %>
                                 <span><i class="material-icons">remove_circle_outline</i></span>
                                 <% end %>
                             <% else %>
-                                <%= link_to shoutout_create_message_path(@shoutout, message, {is_public: false}), class: "btn-floating btn-small green accent-2 waves-effect waves-light", method: :patch do %>
+                                <%= link_to shoutout_create_message_path(@shoutout, message, {is_public: false}), class: "waves-effect waves-light", method: :patch do %>
                                 <span><i class="material-icons">remove_circle</i></span>
                                 <% end %>
                             <% end %>
-                            <%= link_to shoutout_create_message_path(message.shoutout, message), class: "btn-floating btn-small green accent-2 waves-effect waves-light", method: :delete, data: { id: message.id} do %>
+                            <%= link_to shoutout_create_message_path(message.shoutout, message), class: "waves-effect waves-light", method: :delete, data: { id: message.id} do %>
                                 <span><i class="material-icons">delete_forever</i></span>
                             <% end %>
                             </span>
@@ -41,12 +41,14 @@
 
     <div class="chat-form">
         <%= form_for [@shoutout, @create_message] do |f| %>
-        <div class="field">
-        <%= f.text_area :body, class: "form-control form-text" %>
-        </div>
-        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-        <div>
-        <%= f.submit "Send", class: "btn submit" %>
+        <div class="whatever">
+            <div class="field">
+                <%= f.text_area :body, class: "form-control form-text" %>
+            </div>
+            <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+            <div>
+                <%= f.submit "Send", class: "btn submit" %>
+            </div>
         </div>
         <% end %>
     </div>

@@ -63,6 +63,7 @@ $(document).ready(function (){
   $('.chips').chips();
 
   $('#froala-editor').froalaEditor()
+  
 //   $('#froala-editor').editable({
 //     inlineMode: false,
 //     imageUploadToS3: {
@@ -82,7 +83,6 @@ $(document).ready(function (){
 //        }
 //     }
 //  });
-
 
   $("#sort-notes").sortable({
     update: function(e, ui) {

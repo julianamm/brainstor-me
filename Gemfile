@@ -37,6 +37,7 @@ gem 'searchkick'
 gem 'acts_as_list'
 gem 'interact-rails'
 gem 'figaro'
+gem 'aws-sdk-s3', require: false
 
 
 

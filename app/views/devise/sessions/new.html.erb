@@ -1,34 +1,31 @@
-<h2 class="center title">Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form">
-    <div class="row">
-      <div class="col s12">
-        
-        <div class="card-panel">
-          <div class="input-field col s12">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
-
-          <div class="input-field col s12">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "off" %>
-          </div>
-
-          <% if devise_mapping.rememberable? -%>
+<section class=>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form">
+      <div class="row">
+        <div class="col s12">
+          
+          <div class="card-panel login">
+              <div class="input-field col s12 center">
+                <img class="responsive-img logo-login" src="/assets/logo-white-withtext.png">
+              </div>
             <div class="input-field col s12">
-              <%= f.check_box :remember_me, class: "filled-in", id: "remember" %>
-              <%= f.label :remember_me, for: "remember" %>
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email text-white" %>
             </div>
-          <% end -%>
 
-          <div class="actions input-field col s12">
-            <a class="waves-effect waves-light btn submit"><%= f.submit "Log in" %></a>
-          </div>
-        <%= render "devise/shared/links" %>
+            <div class="input-field col s12">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
+
+            <div class="actions input-field col s12">
+              <a class="waves-effect waves-light btn submit"><%= f.submit "Log in" %></a>
+            </div>
+          <%= render "devise/shared/links" %>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</section>
  

@@ -13,7 +13,7 @@
     z-index: 2;
     overflow: auto;
     box-shadow: 0 5px 50px rgba(0, 0, 0, .2);
-    background: #69f0ae;
+    background: #004d40;
     border-radius: 20px;
     display: flex;
     justify-content: flex-start;
@@ -61,10 +61,16 @@
     width: 30px;
     height: 30px;
     // overflow: hidden;
-    margin: 0;
+    margin-left: 10px;
     padding: 0;
 }
-
+.whatever {
+    width: 340px !important;
+    display: flex;
+    min-height: 250px !important;
+    justify-content: center;
+    align-items: center;
+}
 img {
     width: 100%;
     height: auto;
@@ -78,20 +84,24 @@ img {
 
 .chat-form .form-text {
 	background: #fbfbfb;
-	width: 75%;
+	width: 100%;
 	height: 50px;
 	border: 2px solid #eee;
-	border-radius: 3px;
+	border-radius: 15px;
 	resize: none;
 	padding: 10px;
-	font-size: 18px;
-	color: #333;
+	font-size: 1rem;
+    color: #333;
+    display: flex;
 }
 
 .chat-form .form-text:focus {
 	background: #fff;
 }
 
+.chat-form .btn {
+    margin-left: 10px;
+}
 .chat-form .btn:hover {
 	background: #13c8d9;
 }

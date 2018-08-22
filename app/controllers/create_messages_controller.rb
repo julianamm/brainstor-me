@@ -14,7 +14,6 @@ class CreateMessagesController < ApplicationController
         @create_message.shoutout_id = @shoutout.id
         @create_message.user = current_user
         if @create_message.save!
-            flash[:notice] = "Your shoutout was sent!"
             redirect_to shoutout_create_messages_path(@shoutout)
         end
     end
@@ -23,9 +22,6 @@ class CreateMessagesController < ApplicationController
         @create_message ||= CreateMessage.find params[:id]
     
         if @create_message.update(is_public: params[:is_public])
-          flash[:success] = "Vote changed"
-        else
-          flash[:danger] = "Vote could not be changed"
         end
     
         redirect_to shoutout_create_messages_path(@shoutout)
