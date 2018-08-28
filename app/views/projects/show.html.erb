@@ -43,7 +43,10 @@
   <div class="row container">
     <h2 class="title center">Notes</h2>
     <%= form_for [@project, @note] do |f| %>
-      <%= f.text_area :body, id: "froala-editor", input_html: { cols: 60, row: 6, placeholder: "What are your thoughts?" } %>
+      <%= f.text_area :body, 
+        id: "froala-editor", 
+        input_html: { cols: 60, row: 6, placeholder: "What are your thoughts?" } 
+      %>
       <%= f.submit "Submit", class:"btn right"%>
     <% end %>
   </div>
@@ -52,18 +55,25 @@
 <div id="droppable-box" class="section notes container">
   <div class="row container" id="sort-notes" data-url="<%= sort_project_notes_path(@project) %>">
     <% @notes.each do |note| %>
-     <div class="note" data-item-id="<%= note.id %>" id="<%= dom_id(note) %>">
+      <div class="note" data-item-id="<%= note.id %>" id="<%= dom_id(note) %>">
         <div id="col s12 m3 context edit">
-          <div id="draggable-note" class="black card note mockup" data-url="<%= sort_project_notes_path(@project) %>">
+          <div class="black card note mockup">
             <div class="control right">
-              <a id="text-toggle" class="btn-floating waves-effect waves-light"><i class="material-icons">invert_colors</i></a>
-              <a class="btn-floating waves-effect waves-light btn modal-trigger" href="#colorpalette"><i class="material-icons">palette</i></a>
-              <%= link_to project_note_path(@project, note), class: "btn-floating waves-effect waves-light", data: { id: note.id }, method: :delete do %>
+              <a id="text-toggle" class="btn-floating waves-effect waves-light">
+                <i class="material-icons">invert_colors</i>
+              </a>
+              <a class="btn-floating waves-effect waves-light btn modal-trigger" href="#colorpalette">
+                <i class="material-icons">palette</i>
+              </a>
+              <%= link_to project_note_path(@project, note), 
+                class: "btn-floating waves-effect waves-light", 
+                data: { id: note.id }, 
+                method: :delete do 
+              %>
                 <span><i class="material-icons">delete_forever</i></span>
               <% end %>
             </div>
             <div class="card-content white-text froala-view">
-              
               <span contenteditable="true" class="text-color"><%= note.body.html_safe %></span> <br />
             </div>
             <div class="note-user-avatar">

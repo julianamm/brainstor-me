@@ -11,7 +11,6 @@ class UsersController < ApplicationController
         @users = User.all
         @projects = Project.all
         @team = Team.where(project_id: :id)
-        
         @create_messages = CreateMessage.where(is_public: true)
 
         search = params[:query].present? ? params[:query] : nil

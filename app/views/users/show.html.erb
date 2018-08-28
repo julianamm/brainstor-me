@@ -4,13 +4,13 @@
         <% if user_signed_in? %>
             <section class="card">
             <div class="card-panel ">
-                <span class="bloc1 user-img-profile">
+                <div class="center">
                     <% if @user.photo.nil? %>    
-                        <img class="circle profile" src="/assets/default-avatar.png">
+                        <img class="circle profile center" src="/assets/default-avatar.png">
                     <% else %>    
-                        <img class="circle profile user-img-profile" src="<%= @user&.photo %>">
+                        <img class="circle avatar-large" src="<%= @user&.photo %>">
                     <% end %>
-                </span>
+                </div>
                 <span>
                     <%= link_to edit_user_registration_path(@user), class:"btn-floating halfway-fab waves-effect waves-light" do %>
                     <i class="material-icons">edit</i>
@@ -18,8 +18,8 @@
                 </span>
                 
                 <span class="bloc2">
-                    <p>@<%= @user&.username %></p>
-                    <p><%= @user&.email %></p>
+                    <p class="left">@<%= @user&.username %></p>
+                    <p class="left"><%= @user&.email %></p>
                 </span>
                 <div class="bloc1">
                     <p class="bold">Projects</p>
@@ -143,6 +143,7 @@
                 </div>
             </section>
         </div>   
+
 
         <!-- Modal ShoutOut -->
         <div id="modal1" class="modal">

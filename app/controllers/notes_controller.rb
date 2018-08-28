@@ -26,7 +26,7 @@ class NotesController < ApplicationController
     redirect_to project_path(@note.project)
   end
 
-  def sort 
+   def sort
     params[:note].each_with_index do |id, index|
       Note.where(id: id).update_all(position: index + 1)
     end 
