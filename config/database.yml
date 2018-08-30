@@ -82,4 +82,4 @@ production:
   <<: *default
   database: brainstor-me_production
   username: brainstor-me
-  password: <%= ENV['BRAINSTOR-ME_DATABASE_PASSWORD'] %>
+  # password: <%= ENV['BRAINSTOR-ME_DATABASE_PASSWORD'] %>
