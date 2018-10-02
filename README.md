@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Brainstor.me
 
-Things you may want to cover:
+Brainstor.me is a web application that promotes professional development and team collaboration through projects. 
 
-* Ruby version
+Functionality includes:
+* A user can create a project and assign team members to it. 
+* Being part of a project, will allow users to update the project adding content to it by creating animated sticky notes which can include images, videos, text and links. 
+* Users can change the notes’ positions by dragging and dropping them.
+* Projects are searchable by keywords in both index and user’s show page. 
+* Team members have the ability to send feedbacks and recognition to each other through the Shoutout feature. 
+* Users can make a shoutout public in order to display the shoutout message in their profile.
+* User's can navigate through each other’s profile to check out their projects, skill tags, bios and shoutouts.
 
-* System dependencies
 
-* Configuration
+# Getting Started
+To view this website prototype, run Rails Server and go to http://localhost:3000
 
-* Database creation
+# Prerequisites
+Ruby on Rails v.4 or higher
 
-* Database initialization
+# Built With
+* Ruby on Rails
+* Materialize UI Framework with a heavy dose of custom CSS
+* Froala Editor
+* Javascript
+* Postgresql
 
-* How to run the test suite
+# In Progress
+* AWS Database Implementation to store Froala Editor images.
 
-* Services (job queues, cache servers, search engines, etc.)
+# Demo Page Login
+User name: julie@email.gov Pass: supersecret
 
-* Deployment instructions
+# Author
+Juliana Martins de Morais
 
-* ...

@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# PASSWORD = "123"
+# PASSWORD = "supersecret"
 
 # User.delete_all
 # Project.delete_all
@@ -15,7 +15,7 @@
 # super_user = User.create(
 # 	name: "Juju",
 # 	username: "juju",
-# 	email: "juju@gmail.com",
+# 	email: "julie@email.gov",
 # 	password: PASSWORD
 # )
 
