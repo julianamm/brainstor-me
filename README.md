@@ -11,7 +11,7 @@ Functionality includes:
 * Projects are searchable by keywords in both index and user’s show page. 
 * Team members have the ability to send feedbacks and recognition to each other through the Shoutout feature. 
 * Users can make a shoutout public in order to display the shoutout message in their profile.
-* User's can navigate through each other’s profile to check out their projects, skill tags, bios and shoutouts.
+* User's can navigate through each other’s profile to check it out their projects, skill tags, bios and shoutouts.
 
 
 # Getting Started
