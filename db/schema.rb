@@ -47,14 +47,6 @@ ActiveRecord::Schema.define(version: 2018_08_20_151428) do
     t.index ["user_id"], name: "index_create_messages_on_user_id"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string "content"
-    t.bigint "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_images_on_project_id"
-  end
-
   create_table "notes", force: :cascade do |t|
     t.bigint "project_id"
     t.text "body"
@@ -136,7 +128,6 @@ ActiveRecord::Schema.define(version: 2018_08_20_151428) do
 
   add_foreign_key "create_messages", "shoutouts"
   add_foreign_key "create_messages", "users"
-  add_foreign_key "images", "projects"
   add_foreign_key "notes", "projects"
   add_foreign_key "notes", "users"
   add_foreign_key "projects", "users"
