@@ -38,7 +38,7 @@ gem 'acts_as_list'
 gem 'interact-rails'
 gem 'figaro'
 gem 'aws-sdk-s3', require: false
-
+gem "bower-rails", "~> 0.11.0"
 
 
 gem 'faker'
