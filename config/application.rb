@@ -31,5 +31,7 @@ module BrainstorMe
     config.generators.system_tests = nil
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components') 
   end
 end
