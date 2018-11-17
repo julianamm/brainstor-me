@@ -19,8 +19,6 @@
 //= require materialize
 //= require materialize-sprockets
 // Bower packages
-//= require d3
-//= require underscore
 //= require activestorage
 //= require froala_editor.min.js
 //= require plugins/align.min.js
